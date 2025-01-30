@@ -11,7 +11,7 @@ from datetime import datetime
 
 class NoteCreationWindow(Screen):
     note_text = ObjectProperty(None)
-    note_title_text = ObjectProperty(None)  # Added for note title
+    note_title_text = ObjectProperty(None)
     current_user = StringProperty("")
     chosen_color = StringProperty("melns")
     chosen_category = StringProperty("darbs")

@@ -1,7 +1,7 @@
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty, BooleanProperty, NumericProperty
 from kivy.uix.button import Button
-from kivy.app import App  # Importing App
+from kivy.app import App
 import os
 import csv
 

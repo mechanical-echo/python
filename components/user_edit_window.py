@@ -15,7 +15,6 @@ class UserEditWindow(Screen):
 
     def load_user_data(self, username):
         self.current_user = username
-        # Load user data from CSV
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         users_csv_path = os.path.join(project_root, 'csv', 'users.csv')
         
@@ -40,13 +39,12 @@ class UserEditWindow(Screen):
         users_csv_path = os.path.join(project_root, 'csv', 'users.csv')
         notes_csv_path = os.path.join(project_root, 'csv', 'notes.csv')
         
-        # Check if the new username already exists
         with open(users_csv_path, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file, delimiter='\t')
             for row in reader:
                 if row['username'] == new_username and row['username'] != old_username:
                     self.show_popup("Error", "Username already exists. Please choose a different username.")
-                    return  # Exit the method if the username exists
+                    return
         updated_rows = []        
         with open(users_csv_path, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file, delimiter='\t')
@@ -90,4 +88,4 @@ class UserEditWindow(Screen):
         popup.open()
 
     def back_to_main(self):
-        self.manager.current = 'notes_view'  # Navigate back to NotesView
+        self.manager.current = 'notes_view'

@@ -38,14 +38,13 @@ class NoteEditWindow(Screen):
             with open(note_path, 'w', encoding='utf-8') as note_file:
                 note_file.write(self.note_text.text)
 
-            # Update the CSV entry
             notes_csv_path = os.path.join(csv_dir, 'notes.csv')
             updated_rows = []
             with open(notes_csv_path, 'r', encoding='utf-8') as csvfile:
                 reader = csv.DictReader(csvfile, delimiter='\t')
                 for row in reader:
                     if row['filename'] == self.editing_filename:
-                        row['note_id'] = self.note_title_text.text  # Update the title
+                        row['note_id'] = self.note_title_text.text
                         row['category'] = self.chosen_category
                         row['color'] = self.chosen_color
                         row['created_at'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")

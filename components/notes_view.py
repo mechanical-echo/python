@@ -4,7 +4,7 @@ import os
 import csv
 from kivy.uix.label import Label
 from components.note_item_view import NoteItemView
-from components.user_edit_window import UserEditWindow  # Import the new UserEditWindow
+from components.user_edit_window import UserEditWindow
 from kivy.uix.button import Button
 
 class NotesView(Screen):
@@ -18,9 +18,9 @@ class NotesView(Screen):
         self.add_widget(self.notes_label)
 
     def edit_profile(self):
-        self.manager.current = 'user_edit'  # Navigate to UserEditWindow
+        self.manager.current = 'user_edit'
         edit_screen = self.manager.get_screen('user_edit')
-        edit_screen.load_user_data(self.current_user)  # Load current user data
+        edit_screen.load_user_data(self.current_user)
 
     def logout_button(self):
         self.current_user = ""
