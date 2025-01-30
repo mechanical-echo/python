@@ -414,7 +414,9 @@
     NotesView:
         name: 'notes_view'
     NoteEditWindow:
-        name: 'note_edit'  # Ensure NoteEditWindow is registered
+        name: 'note_edit'
+    UserEditWindow:
+        name: 'user_edit'
 
 <NoteEditWindow>:
     note_text: note_input
@@ -512,4 +514,101 @@
                 Button:
                     text: "Saglabāt"
                     on_release: root.save_note()
+                    size_hint_y: .2
+<UserEditWindow>:
+    username_input: username_input
+    password_input: password_input
+    name_input: name_input
+    surname_input: surname_input
+
+    canvas.before:
+        Color:
+            rgba: (0.85, 0.95, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "horizontal"
+        
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: .28
+
+            canvas.before:
+                Color:
+                    rgba: (.1, 0, 0, .15)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .25
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .75
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                Button:
+                    text: "Atpakaļ"
+                    font_size: min(root.width, root.height) * 0.05
+                    on_release: root.back_to_main()
+                    size_hint_y: .15
+                    background_color: 0.5, 0.3, 0.7, .5
+
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .125
+
+                canvas.before:
+                    Color:
+                        rgba: (.1, 0, 0, .15)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                
+                Label:
+                    text: "Rediģēt lietotāja informāciju:"
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: "vertical"
+                padding: [20, 40]
+                spacing: 15
+
+                TextInput:
+                    id: username_input
+                    hint_text: "Ievadi lietotājvārdu"
+                    font_size: min(root.width, root.height) * 0.04
+                    size_hint_y: .15
+
+                TextInput:
+                    id: password_input
+                    hint_text: "Ievadi paroli"
+                    font_size: min(root.width, root.height) * 0.04
+                    password: True
+                    size_hint_y: .15
+
+                TextInput:
+                    id: name_input
+                    hint_text: "Ievadi vārdu"
+                    font_size: min(root.width, root.height) * 0.04
+                    size_hint_y: .15
+
+                TextInput:
+                    id: surname_input
+                    hint_text: "Ievadi uzvārdu"
+                    font_size: min(root.width, root.height) * 0.04
+                    size_hint_y: .15
+
+                Button:
+                    text: "Saglabāt"
+                    on_release: root.save_user_data()
                     size_hint_y: .2

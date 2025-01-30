@@ -4,6 +4,8 @@ import os
 import csv
 from kivy.uix.label import Label
 from components.note_item_view import NoteItemView
+from components.user_edit_window import UserEditWindow  # Import the new UserEditWindow
+from kivy.uix.button import Button
 
 class NotesView(Screen):
     notes_data = ListProperty([])
@@ -14,6 +16,11 @@ class NotesView(Screen):
         super().__init__(**kwargs)
         self.notes_label = Label(text="", size_hint_y=None, height=100)
         self.add_widget(self.notes_label)
+
+    def edit_profile(self):
+        self.manager.current = 'user_edit'  # Navigate to UserEditWindow
+        edit_screen = self.manager.get_screen('user_edit')
+        edit_screen.load_user_data(self.current_user)  # Load current user data
 
     def logout_button(self):
         self.current_user = ""
