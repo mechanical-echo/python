@@ -15,6 +15,7 @@ class NoteItemView(BoxLayout):
     color_red = NumericProperty(0)
     color_green = NumericProperty(0)
     color_blue = NumericProperty(0)
+    current_user = StringProperty("")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -30,11 +31,11 @@ class NoteItemView(BoxLayout):
 
 
     def edit_note(self):
-        # Correctly access the screen manager
         app = App.get_running_app()
-        app.root.current = 'note_edit'  # Switch to the new edit screen
+        app.root.current = 'note_edit'
         edit_screen = app.root.get_screen('note_edit')
         edit_screen.load_note_data(self.filename, self.note_text, self.note_title, self.note_category)
+        edit_screen.current_user = self.current_user
 
     def delete_note(self):
         try:

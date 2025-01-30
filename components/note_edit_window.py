@@ -13,15 +13,15 @@ class NoteEditWindow(Screen):
     note_text = ObjectProperty(None)
     note_title_text = ObjectProperty(None)
     current_user = StringProperty("")
-    chosen_color = StringProperty("baltā")
+    chosen_color = StringProperty("melns")
     chosen_category = StringProperty("darbs")
-    editing_filename = StringProperty("")  # Track the filename being edited
+    editing_filename = StringProperty("")
 
     def load_note_data(self, filename, note_text, note_title, note_category):
         self.note_text.text = note_text
         self.note_title_text.text = note_title
         self.chosen_category = note_category
-        self.editing_filename = filename  # Set the filename being edited
+        self.editing_filename = filename
 
     def save_note(self):
         if not self.note_text.text.strip():

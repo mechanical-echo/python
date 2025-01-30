@@ -13,7 +13,7 @@ class NoteCreationWindow(Screen):
     note_text = ObjectProperty(None)
     note_title_text = ObjectProperty(None)  # Added for note title
     current_user = StringProperty("")
-    chosen_color = StringProperty("baltā")
+    chosen_color = StringProperty("melns")
     chosen_category = StringProperty("darbs")
 
     def create_color_dropdown(self, button):

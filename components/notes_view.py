@@ -79,6 +79,7 @@ class NotesView(Screen):
                     color_red       = color['r'],
                     color_green     = color['g'],
                     color_blue      = color['b'],
+                    current_user    = self.current_user
                 )
                 note_item.current_user = self.current_user
                 notes_container.add_widget(note_item)
