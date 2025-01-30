@@ -1,16 +1,18 @@
 from kivy.uix.screenmanager import Screen
-from kivy.properties import ListProperty, StringProperty
+from kivy.properties import ListProperty, StringProperty, ColorProperty
 import os
 import csv
 from kivy.uix.label import Label
 from components.note_item_view import NoteItemView
 from components.user_edit_window import UserEditWindow
 from kivy.uix.button import Button
+from kivy.graphics import Color, Rectangle
 
 class NotesView(Screen):
     notes_data = ListProperty([])
     colors_data = ListProperty([])
     current_user = StringProperty("")
+    background_color = ColorProperty([1, 0.93, 0.93, 1])
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -98,3 +100,6 @@ class NotesView(Screen):
         self.manager.current = 'note_edit'
         edit_screen = self.manager.get_screen('note_edit')
         edit_screen.load_note_data(filename)
+
+    def open_settings(self):
+        self.manager.current = 'settings_window'

@@ -253,7 +253,7 @@
 <NotesView>:
     canvas.before:
         Color:
-            rgba: (1, .93, .93, 1)
+            rgba: root.background_color
         Rectangle:
             pos: self.pos
             size: self.size
@@ -285,6 +285,12 @@
                     text: "Rediģēt kontu"
                     on_release: root.edit_profile()
                     background_color: 0.7, 0.3, 0.5, .5
+
+                Button:
+                    text: "Iestatījumi"
+                    on_release: root.open_settings()
+                    size_hint_y: None
+                    height: dp(50)
 
             BoxLayout:
                 orientation: "vertical"
@@ -395,13 +401,13 @@
                 color: root.color_red, root.color_green, root.color_blue, 1
 
             Button:
-                text: "Edit"
+                text: "Rediģēt"
                 size_hint_y: 1
                 size_hint_x: .45
                 on_release: root.edit_note()
 
             Button:
-                text: "Delete"
+                text: "Dzēst"
                 size_hint_y: 1
                 size_hint_x: .55
                 on_release: root.delete_note()
@@ -417,6 +423,8 @@
         name: 'note_edit'
     UserEditWindow:
         name: 'user_edit'
+    SettingsWindow:
+        name: 'settings_window'
 
 <NoteEditWindow>:
     note_text: note_input
@@ -460,7 +468,6 @@
                     on_release: root.back_to_main()
                     size_hint_y: .15
                     background_color: 0.5, 0.3, 0.7, .5
-
 
         BoxLayout:
             orientation: "vertical"
@@ -612,3 +619,28 @@
                     text: "Saglabāt"
                     on_release: root.save_user_data()
                     size_hint_y: .2
+<SettingsWindow>:
+    canvas.before:
+        Color:
+            rgba: (0.85, 0.95, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+
+        Label:
+            text: "Iestatījumi"
+            font_size: 24
+            size_hint_y: None
+            height: dp(40)
+
+        Button:
+            text: "Izvēlēties fona krāsu"
+            on_release: root.dropdown.open(self)
+
+        Button:
+            text: "Atpakaļ"
+            on_release: root.go_back()
