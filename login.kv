@@ -324,6 +324,14 @@
                 Label:
                     text: "Jūsu piezīmes:"
                     color: 0, 0, 0, 1
+                
+                Button:
+                    text: "Kārtot pēc datuma"
+                    on_press: root.sort_notes_by_date()
+
+                Button:
+                    text: "Kārtot pēc nosaukuma"
+                    on_press: root.sort_notes_by_title()
 
             ScrollView:
                 do_scroll_x: False

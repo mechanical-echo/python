@@ -103,3 +103,11 @@ class NotesView(Screen):
 
     def open_settings(self):
         self.manager.current = 'settings_window'
+
+    def sort_notes_by_date(self):
+        self.notes_data.sort(key=lambda x: x['created_at'], reverse=True)
+        self.update_notes_view()
+
+    def sort_notes_by_title(self):
+        self.notes_data.sort(key=lambda x: x['note_id'])
+        self.update_notes_view()
