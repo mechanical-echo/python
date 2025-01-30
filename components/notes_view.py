@@ -13,6 +13,9 @@ class NotesView(Screen):
     colors_data = ListProperty([])
     current_user = StringProperty("")
     background_color = ColorProperty([1, 0.93, 0.93, 1])
+    
+    sort_order_date = True
+    sort_order_title = True
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -105,9 +108,11 @@ class NotesView(Screen):
         self.manager.current = 'settings_window'
 
     def sort_notes_by_date(self):
-        self.notes_data.sort(key=lambda x: x['created_at'], reverse=True)
+        self.sort_order_date = not self.sort_order_date
+        self.notes_data.sort(key=lambda x: x['created_at'], reverse=not self.sort_order_date)
         self.update_notes_view()
 
     def sort_notes_by_title(self):
-        self.notes_data.sort(key=lambda x: x['note_id'])
+        self.sort_order_title = not self.sort_order_title
+        self.notes_data.sort(key=lambda x: x['note_id'], reverse=not self.sort_order_title)
         self.update_notes_view()
