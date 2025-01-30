@@ -1,3 +1,4 @@
+#:kivy 2.0.0
 <LoginWindow>:
     username: username
     password: password
@@ -100,9 +101,8 @@
 
     Label:
         text: root.status_message
-        pos: [520, 0]
+        pos: [0, -20]
         size_hint: 1, 0.4
-        color: root.status_color
         font_size: min(root.width, root.height) * 0.04
         bold: True
 
@@ -151,99 +151,11 @@
         self.pressed = True
     on_release:
         self.pressed = False
-        app.animate_button(self)
-
-<MainWindow>:
-    canvas.before:
-        Color:
-            rgba: (0.85, 0.95, 1, 1)
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    FloatLayout:
-        size: root.width, root.height
-
-        Label:
-            text: root.welcome_text
-            pos_hint: {"x": 0, "top": 0.95}
-            size_hint: 1, 0.15
-            font_size: min(root.width, root.height) * 0.08
-            color: 0.2, 0.4, 0.8, 1
-            bold: True
-
-        RoundedButton:
-            text: "View Notes"
-            pos_hint: {"x": 0.2, "y": 0.5}
-            size_hint: 0.6, 0.1
-            font_size: min(root.width, root.height) * 0.06
-            on_release: root.view_notes()
-
-        RoundedButton:
-            text: "Create Note"
-            pos_hint: {"x": 0.2, "y": 0.35}
-            size_hint: 0.6, 0.1
-            font_size: min(root.width, root.height) * 0.06
-            on_release: root.create_note()
-
-        RoundedButton:
-            text: "Edit Note"
-            pos_hint: {"x": 0.2, "y": 0.2}
-            size_hint: 0.6, 0.1
-            font_size: min(root.width, root.height) * 0.06
-            on_release: root.edit_note()
-
-        RoundedButton:
-            text: "Logout"
-            pos_hint: {"x": 0.2, "y": 0.05}
-            size_hint: 0.6, 0.1
-            font_size: min(root.width, root.height) * 0.06
-            on_release: root.logout_button()
 
 <NoteCreationWindow>:
     note_text: note_input
+    note_title_text: note_title_input
     
-    canvas.before:
-        Color:
-            rgba: (0.85, 0.95, 1, 1)
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
-    FloatLayout:
-        size: root.width, root.height
-
-        Label:
-            text: "Create Note"
-            pos_hint: {"x": 0, "top": 0.95}
-            size_hint: 1, 0.15
-            font_size: min(root.width, root.height) * 0.08
-            color: 0.2, 0.4, 0.8, 1
-            bold: True
-
-        RoundedTextInput:
-            id: note_input
-            multiline: True
-            size_hint: 0.6, 0.5
-            pos_hint: {"x": 0.2, "y": 0.3}
-            hint_text: "Enter your note here"
-            font_size: min(root.width, root.height) * 0.04
-
-        RoundedButton:
-            text: "Save"
-            pos_hint: {"x": 0.2, "y": 0.1}
-            size_hint: 0.3, 0.1
-            font_size: min(root.width, root.height) * 0.05
-            on_release: root.save_note()
-
-        RoundedButton:
-            text: "Back"
-            pos_hint: {"x": 0.5, "y": 0.1}
-            size_hint: 0.3, 0.1
-            font_size: min(root.width, root.height) * 0.05
-            on_release: root.back_to_main()
-
-<NotesView>:
     canvas.before:
         Color:
             rgba: (0.85, 0.95, 1, 1)
@@ -252,66 +164,352 @@
             size: self.size
 
     BoxLayout:
-        orientation: 'vertical'
+        orientation: "horizontal"
         
-        Label:
-            text: "Your Notes"
-            size_hint_y: .3
-            font_size: min(root.width, root.height) * 0.08
-            color: 0.2, 0.4, 0.8, 1
-            bold: True
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: .28
 
-        ScrollView:
-            do_scroll_x: False
-            do_scroll_y: True
-            
             canvas.before:
                 Color:
-                    rgba: (0.85, 0.95, 1, 1)
-            
-            BoxLayout:
-                id: notes_container
-                orientation: 'vertical'
-                size_hint_y: None  # Allow the BoxLayout to expand based on its content
-                height: self.minimum_height  # Set height to minimum height
-                spacing: 15
-                padding: [40, 10]
-                
+                    rgba: (.1, 0, 0, .15)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
-        RoundedButton:
-            text: "Back"
-            size_hint_y: .2
-            font_size: min(root.width, root.height) * 0.05
-            on_release: root.back_to_main()
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .25
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .75
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                Button:
+                    text: "Atpakaļ"
+                    font_size: min(root.width, root.height) * 0.05
+                    on_release: root.back_to_main()
+                    size_hint_y: .15
+                    background_color: 0.5, 0.3, 0.7, .5
+
+
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .125
+
+                canvas.before:
+                    Color:
+                        rgba: (.1, 0, 0, .15)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                
+                Label:
+                    text: "Jaunā piezīme:"
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: "vertical"
+                padding: [20, 40]
+                spacing: 15
+
+                TextInput:
+                    id: note_title_input
+                    hint_text: "Ievadi piezīmes nosaukumu"
+                    font_size: min(root.width, root.height) * 0.04
+                    size_hint_y: .25
+                    
+                TextInput:
+                    id: note_input
+                    multiline: True
+                    hint_text: "Ievadi piezīmes tekstu"
+                    font_size: min(root.width, root.height) * 0.04
+                    size_hint_y: .5
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    spacing: 15
+                    size_hint_y: .25
+                    
+                    Button:
+                        text: f'Izvēlies krāsu : {root.chosen_color}'
+                        on_release: root.create_color_dropdown(self)
+                        
+                    Button:
+                        text: f'Izvēlies kategoriju : {root.chosen_category}'
+                        on_release: root.create_category_dropdown(self)
+
+                Button:
+                    text: "Saglabāt"
+                    on_release: root.save_note()
+                    size_hint_y: .2
+    
+<NotesView>:
+    canvas.before:
+        Color:
+            rgba: (1, .93, .93, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "horizontal"
+        
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: .28
+
+            canvas.before:
+                Color:
+                    rgba: (.1, 0, 0, .15)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .25
+
+                Button:
+                    text: "Pievienot"
+                    on_release: root.create_note()
+                    background_color: 0.7, 0.3, 0.5, .5
+
+                Button:
+                    text: "Rediģēt kontu"
+                    on_release: root.edit_profile()
+                    background_color: 0.7, 0.3, 0.5, .5
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .75
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                Button:
+                    text: "Izlogoties"
+                    font_size: min(root.width, root.height) * 0.05
+                    on_release: root.logout_button()
+                    size_hint_y: .15
+                    background_color: 0.5, 0.3, 0.7, .5
+
+
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .125
+
+                canvas.before:
+                    Color:
+                        rgba: (.1, 0, 0, .15)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                
+                Label:
+                    text: "Jūsu piezīmes:"
+                    color: 0, 0, 0, 1
+
+            ScrollView:
+                do_scroll_x: False
+                do_scroll_y: True
+                
+                canvas.before:
+                    Color:
+                        rgba: (0.85, 0.95, 1, 1)
+                
+                GridLayout:
+                    cols: 2
+                    id: notes_container
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: 15
+                    padding: [20, 10]
 
 <NoteItemView>:
     orientation: 'vertical'
+    size_hint_y: None
+    height: self.minimum_height
+    padding: dp(10)
+    spacing: dp(15)
 
     canvas.before:
         Color:
-            rgba: (0.98, 0.96, 1, 1)
+            rgba: (root.color_red, root.color_green, root.color_blue, .5)
         RoundedRectangle:
             pos: self.pos
-            size: root.width, 45
-            radius: [15]
+            size: root.width, root.height
+            radius: [4]
+    Label:
+        text: f"{root.note_title}"
+        text_size: self.width - dp(20), None
+        color: root.color_red - 0.1, root.color_green - 0.1, root.color_blue - 0.1, 1
+        size_hint_y: None
+        bold: True
+        height: self.texture_size[1]
 
     Label:
         text: f"Created: {root.created_at}"
-        font_size: 15
-        color: 0.2, 0.4, 0.8, 1
+        text_size: self.width - dp(20), None
+        color: root.color_red, root.color_green, root.color_blue, 1
+        size_hint_y: None
+        height: self.texture_size[1]
     
     Label:
         text: root.note_text
-        font_size: 15
-        color: 0.2, 0.4, 0.8, 1
+        color: root.color_red - .1, root.color_green - .1, root.color_blue - .1, 1
         bold: True
+        text_size: self.width - dp(20), None
+        size_hint_y: None
+        height: self.texture_size[1]
+        halign: 'left'
+        valign: 'middle'
+        padding: [10, 10]
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: dp(30)
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_x: .3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            spacing: 5
+            size_hint_x: .7
+
+            Label:
+                text: f"{root.note_category}"
+                text_size: self.width - dp(20), None
+                color: root.color_red, root.color_green, root.color_blue, 1
+
+            Button:
+                text: "Edit"
+                size_hint_y: 1
+                size_hint_x: .45
+                on_release: root.edit_note()
+
+            Button:
+                text: "Delete"
+                size_hint_y: 1
+                size_hint_x: .55
+                on_release: root.delete_note()
 
 <WindowManager>:
     LoginWindow:
         name: 'login'
-    MainWindow:
-        name: 'main'
     NoteCreationWindow:
         name: 'note_creation'
     NotesView:
         name: 'notes_view'
+    NoteEditWindow:
+        name: 'note_edit'  # Ensure NoteEditWindow is registered
+
+<NoteEditWindow>:
+    note_text: note_input
+    note_title_text: note_title_input
+    
+    canvas.before:
+        Color:
+            rgba: (0.85, 0.95, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "horizontal"
+        
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: .28
+
+            canvas.before:
+                Color:
+                    rgba: (.1, 0, 0, .15)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .25
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: .75
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                Button:
+                    text: "Atpakaļ"
+                    font_size: min(root.width, root.height) * 0.05
+                    on_release: root.back_to_main()
+                    size_hint_y: .15
+                    background_color: 0.5, 0.3, 0.7, .5
+
+
+        BoxLayout:
+            orientation: "vertical"
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint_y: .125
+
+                canvas.before:
+                    Color:
+                        rgba: (.1, 0, 0, .15)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                
+                Label:
+                    text: "Jaunā piezīme:"
+                    color: 0, 0, 0, 1
+
+            BoxLayout:
+                orientation: "vertical"
+                padding: [20, 40]
+                spacing: 15
+
+                TextInput:
+                    id: note_title_input
+                    hint_text: "Ievadi piezīmes nosaukumu"
+                    font_size: min(root.width, root.height) * 0.04
+                    size_hint_y: .25
+                    
+                TextInput:
+                    id: note_input
+                    multiline: True
+                    hint_text: "Ievadi piezīmes tekstu"
+                    font_size: min(root.width, root.height) * 0.04
+                    size_hint_y: .5
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    spacing: 15
+                    size_hint_y: .25
+                    
+                    Button:
+                        text: f'Izvēlies krāsu : {root.chosen_color}'
+                        on_release: root.create_color_dropdown(self)
+                        
+                    Button:
+                        text: f'Izvēlies kategoriju : {root.chosen_category}'
+                        on_release: root.create_category_dropdown(self)
+
+                Button:
+                    text: "Saglabāt"
+                    on_release: root.save_note()
+                    size_hint_y: .2
