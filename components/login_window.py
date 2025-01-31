@@ -33,6 +33,7 @@ class LoginWindow(Screen):
             self.manager.current = 'notes_view'
             notes_screen = self.manager.get_screen('notes_view')
             notes_screen.current_user = self.username.text
+            notes_screen.check_admin_role(self.username.text)
             notes_screen.load_user_notes(self.username.text)
             self.username.text = ""
             self.password.text = ""

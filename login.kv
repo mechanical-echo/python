@@ -5,115 +5,145 @@
 
     canvas.before:
         Color:
-            rgba: (0.95, 0.95, 0.95, 1)
+            rgba: (0.95, 0.97, 1, 1)
         Rectangle:
             pos: self.pos
             size: self.size
 
-    GridLayout:
-        cols: 1
-        padding: dp(40)
-        spacing: dp(20)
-        size: root.width, root.height
-
+    FloatLayout:
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: 0.3
-            spacing: dp(10)
-
-            Label:
-                text: "Welcome!"
-                font_size: min(root.width, root.height) * 0.1
-                color: (0.2, 0.4, 0.6, 1)
-                bold: True
-                halign: 'center'
-                valign: 'middle'
-                text_size: self.size
+            size_hint_x: 0.4
+            pos_hint: {'x': 0, 'y': 0}
+            
+            canvas.before:
+                Color:
+                    rgba: (0.3, 0.4, 0.8, 1)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
             Image:
                 source: './maxwell.gif'
-                size_hint: 1, 0.8
+                size_hint: 1, 0.6
+                pos_hint: {'center_x': 0.5, 'center_y': 0.5}
                 anim_delay: 0.01
                 anim_loop: 0
                 allow_stretch: True
                 keep_ratio: True
 
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint_y: 0.3
-            spacing: dp(5)
+            Label:
+                text: "Piezīmes"
+                font_size: min(root.width, root.height) * 0.06
+                color: (1, 1, 1, 1)
+                bold: True
+                size_hint_y: 0.2
 
             Label:
-                text: "Username:"
-                font_size: min(root.width, root.height) * 0.05
-                color: (0.2, 0.2, 0.2, 1)
-                bold: True
-                halign: 'left'
-                text_size: self.size
-
-            CustomTextInput:
-                id: username
-                multiline: False
-                size_hint_y: 0.6
-                hint_text: "Enter your username"
-                font_size: min(root.width, root.height) * 0.04
-                background_color: (1, 1, 1, 1)
-                foreground_color: (0.2, 0.2, 0.2, 1)
-                padding: [10, 10]
-
+                text: "Organizē savas domas"
+                font_size: min(root.width, root.height) * 0.03
+                color: (0.9, 0.9, 1, 1)
+                halign: 'center'
+                size_hint_y: 0.2
+                
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: 0.3
-            spacing: dp(5)
+            size_hint: (0.6, 0.8)
+            pos_hint: {'right': 0.95, 'center_y': 0.5}
+            padding: dp(40)
+            spacing: dp(20)
 
             Label:
-                text: "Password:"
-                font_size: min(root.width, root.height) * 0.05
-                color: (0.2, 0.2, 0.2, 1)
+                text: "Laipni lūdzam atpakaļ!"
+                font_size: min(root.width, root.height) * 0.06
+                color: (0.3, 0.4, 0.8, 1)
                 bold: True
+                size_hint_y: None
+                height: dp(80)
                 halign: 'left'
                 text_size: self.size
+                padding: [dp(40), dp(20)]
 
-            CustomTextInput:
-                id: password
-                multiline: False
-                password: True
-                size_hint_y: 0.6
-                hint_text: "Enter your password"
-                font_size: min(root.width, root.height) * 0.04
-                background_color: (1, 1, 1, 1)
-                foreground_color: (0.2, 0.2, 0.2, 1)
-                padding: [10, 10]
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(30)
+                padding: [dp(40), dp(0)]
+                
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(5)
+                    size_hint_y: None
+                    height: dp(80)
 
-        Button:
-            text: "Login"
-            size_hint_y: 0.15
-            font_size: min(root.width, root.height) * 0.06
-            bold: True
-            color: (1, 1, 1, 1)
-            background_color: (0.2, 0.4, 0.6, 1)
-            on_press: root.login_button()
-            canvas.before:
-                Color:
-                    rgba: self.background_color
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [dp(10),]
+                    Label:
+                        text: "Lietotājvārds"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (0.3, 0.3, 0.4, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
 
-        Label:
-            text: root.status_message
-            size_hint_y: 0.1
-            font_size: min(root.width, root.height) * 0.04
-            color: (0.8, 0.2, 0.2, 1)
-            bold: True
-            halign: 'center'
-            valign: 'middle'
-            text_size: self.size
+                    CustomTextInput:
+                        id: username
+                        multiline: False
+                        hint_text: "Ievadi lietotājvārdu"
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: None
+                        height: dp(45)
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    spacing: dp(5)
+                    size_hint_y: None
+                    height: dp(80)
+
+                    Label:
+                        text: "Parole"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (0.3, 0.3, 0.4, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    CustomTextInput:
+                        id: password
+                        multiline: False
+                        password: True
+                        hint_text: "Ievadi paroli"
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: None
+                        height: dp(45)
+
+                Button:
+                    text: "Pieslēgties"
+                    font_size: min(root.width, root.height) * 0.045
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
+                    on_press: root.login_button()
+                    canvas.before:
+                        Color:
+                            rgba: (0.3, 0.4, 0.8, 1)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(25)]
+
+            Label:
+                text: root.status_message
+                color: (0.8, 0.2, 0.2, 1)
+                font_size: min(root.width, root.height) * 0.035
+                size_hint_y: None
+                height: dp(30)
+                halign: 'center'
 
 <CustomTextInput@TextInput>:
     cursor_color: (0.4, 0.2, 0.6, 1)
-    padding: [10, 10]
+    padding: [15, 15]
     background_color: 0, 0, 0, 0
     canvas.before:
         Color:
@@ -123,161 +153,146 @@
             size: self.size
             radius: [15]
         Color:
-            rgba: (0.6, 0.4, 0.8, 1) if self.focus else (0.9, 0.9, 0.9, 1)
-        Line: 
+            rgba: (0.3, 0.4, 0.8, 1) if self.focus else (0.9, 0.9, 0.9, 1)
+        Line:
             rounded_rectangle: (self.x, self.y, self.width, self.height, 15)
-            width: 1.5 if self.focus else 1.2
-    selection_color: 0.6, 0.4, 0.8, 0.4 
-    halign: 'center'
+            width: 1.5 if self.focus else 1
+    selection_color: 0.3, 0.4, 0.8, 0.4
+    halign: 'left'
     valign: 'center'
     padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
 <NoteCreationWindow>:
     note_text: note_input
     note_title_text: note_title_input
     
     canvas.before:
         Color:
-            rgba: (0.85, 0.95, 1, 1)
+            rgba: (0.95, 0.97, 1, 1)
         Rectangle:
             pos: self.pos
             size: self.size
 
     BoxLayout:
         orientation: "horizontal"
+        spacing: dp(20)
+        padding: dp(20)
         
         BoxLayout:
             orientation: "vertical"
-            size_hint_x: .28
+            size_hint_x: .25
+            spacing: dp(15)
 
             canvas.before:
                 Color:
-                    rgba: (.1, 0, 0, .15)
-                Rectangle:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
+                    radius: [15]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .25
+            Label:
+                text: "Jauna piezīme"
+                font_size: min(root.width, root.height) * 0.04
+                color: (1, 1, 1, 1)
+                bold: True
+                size_hint_y: None
+                height: dp(60)
+                padding: [dp(20), 0]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .75
-
-                BoxLayout:
-                    orientation: "vertical"
-
-                Button:
-                    text: "Atpakaļ"
-                    font_size: min(root.width, root.height) * 0.05
-                    on_release: root.back_to_main()
-                    size_hint_y: .15
-                    background_color: 0.5, 0.3, 0.7, .5
-                    color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: (0.5, 0.3, 0.7, .5)
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
-
+            Button:
+                text: "Atpakaļ"
+                font_size: min(root.width, root.height) * 0.025
+                size_hint_y: None
+                height: dp(50)
+                background_color: (0, 0, 0, 0)
+                on_release: root.back_to_main()
+                canvas.before:
+                    Color:
+                        rgba: (0.8, 0.3, 0.3, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
 
         BoxLayout:
             orientation: "vertical"
+            spacing: dp(20)
+            padding: [dp(20), dp(10)]
 
-            BoxLayout:
-                orientation: "horizontal"
-                size_hint_y: .125
-
-                canvas.before:
-                    Color:
-                        rgba: (.1, 0, 0, .15)
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                
-                Label:
-                    text: "Jaunā piezīme:"
-                    color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [15]
 
             BoxLayout:
                 orientation: "vertical"
-                padding: [20, 40]
-                spacing: 15
+                spacing: dp(20)
+                padding: [dp(20), dp(20)]
 
                 CustomTextInput:
                     id: note_title_input
                     hint_text: "Ievadi piezīmes nosaukumu"
-                    font_size: min(root.width, root.height) * 0.04
-                    
+                    font_size: min(root.width, root.height) * 0.035
+                    size_hint_y: None
+                    height: dp(50)
+                    multiline: False
+
                 CustomTextInput:
                     id: note_input
-                    multiline: True
                     hint_text: "Ievadi piezīmes tekstu"
-                    font_size: min(root.width, root.height) * 0.04
+                    font_size: min(root.width, root.height) * 0.035
+                    size_hint_y: 0.7
+                    multiline: True
 
                 BoxLayout:
                     orientation: "horizontal"
-                    spacing: 15
-                    size_hint_y: .25
-                    
+                    size_hint_y: None
+                    height: dp(50)
+                    spacing: dp(15)
+
                     Button:
                         text: f'Izvēlies krāsu : {root.chosen_color}'
+                        background_color: (0, 0, 0, 0)
                         on_release: root.create_color_dropdown(self)
-                        background_color: (0.5, 0.3, 0.7, 1)
-                        color: 1, 1, 1, 1
                         canvas.before:
                             Color:
-                                rgba: (0.5, 0.3, 0.7, 1)
-                            Rectangle:
+                                rgba: (0.3, 0.6, 0.9, 1)
+                            RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                            Color:
-                                rgba: (0.4, 0.2, 0.6, 1)
-                            Line:
-                                rectangle: (self.x, self.y, self.width, self.height)
-                                width: 1.5
-                        
+                                radius: [10]
+
                     Button:
                         text: f'Izvēlies kategoriju : {root.chosen_category}'
+                        background_color: (0, 0, 0, 0)
                         on_release: root.create_category_dropdown(self)
-                        background_color: (0.5, 0.3, 0.7, 1)
-                        color: 1, 1, 1, 1
                         canvas.before:
                             Color:
-                                rgba: (0.5, 0.3, 0.7, 1)
-                            Rectangle:
+                                rgba: (0.3, 0.6, 0.9, 1)
+                            RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                            Color:
-                                rgba: (0.4, 0.2, 0.6, 1)
-                            Line:
-                                rectangle: (self.x, self.y, self.width, self.height)
-                                width: 1.5
+                                radius: [10]
 
                 Button:
                     text: "Saglabāt"
+                    font_size: min(root.width, root.height) * 0.035
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
                     on_release: root.save_note()
-                    size_hint_y: .2
-                    background_color: (0.5, 0.3, 0.7, 1)
-                    color: 1, 1, 1, 1
                     canvas.before:
                         Color:
-                            rgba: (0.5, 0.3, 0.7, 1)
-                        Rectangle:
+                            rgba: (0.3, 0.8, 0.5, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
-    
+                            radius: [10]
+
 <NotesView>:
     canvas.before:
         Color:
@@ -288,285 +303,302 @@
 
     BoxLayout:
         orientation: "horizontal"
+        spacing: dp(20)
+        padding: dp(20)
         
         BoxLayout:
             orientation: "vertical"
-            size_hint_x: .28
+            size_hint_x: .25
+            spacing: dp(15)
+            padding: [dp(10), dp(20)]
 
             canvas.before:
                 Color:
-                    rgba: (.1, 0, 0, .15)
-                Rectangle:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
+                    radius: [15]
 
             BoxLayout:
                 orientation: "vertical"
-                size_hint_y: .25
+                size_hint_y: .1
+                spacing: dp(5)
+
+                Label:
+                    text: root.current_user
+                    font_size: min(root.width, root.height) * 0.03
+                    color: (1, 1, 1, 0.9)
+                    bold: True
+                    size_hint_y: None
+                    height: dp(30)
+
+            BoxLayout:
+                orientation: "vertical"
+                spacing: dp(10)
+                padding: [0, dp(20)]
 
                 Button:
-                    text: "Pievienot"
+                    text: "Pievienot jaunu piezīmi"
+                    font_size: min(root.width, root.height) * 0.025
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
                     on_release: root.create_note()
-                    background_color: 0.7, 0.3, 0.5, .5
-                    color: 1, 1, 1, 1
                     canvas.before:
                         Color:
-                            rgba: (0.7, 0.3, 0.5, .5)
-                        Rectangle:
+                            rgba: (0.3, 0.6, 0.9, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.6, 0.2, 0.4, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [10]
 
                 Button:
-                    text: "Rediģēt kontu"
+                    text: "Rediģēt profilu"
+                    font_size: min(root.width, root.height) * 0.025
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
                     on_release: root.edit_profile()
-                    background_color: 0.7, 0.3, 0.5, .5
-                    color: 1, 1, 1, 1
                     canvas.before:
                         Color:
-                            rgba: (0.7, 0.3, 0.5, .5)
-                        Rectangle:
+                            rgba: (0.4, 0.5, 0.8, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.6, 0.2, 0.4, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [10]
 
                 Button:
                     text: "Iestatījumi"
+                    font_size: min(root.width, root.height) * 0.025
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
                     on_release: root.open_settings()
-                    size_hint_y: None
-                    height: dp(50)
-                    background_color: 0.7, 0.3, 0.5, .5
-                    color: 1, 1, 1, 1
                     canvas.before:
                         Color:
-                            rgba: (0.7, 0.3, 0.5, .5)
-                        Rectangle:
+                            rgba: (0.5, 0.4, 0.7, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.6, 0.2, 0.4, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [10]
 
                 Button:
-                    text: "Lietotāji"
+                    text: "Lietotāju pārvaldība"
+                    font_size: min(root.width, root.height) * 0.025
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
                     on_release: root.open_user_management()
-                    size_hint_y: None
-                    height: dp(50)
-                    background_color: 0.7, 0.3, 0.5, .5
-                    color: 1, 1, 1, 1
+                    opacity: 1 if root.is_admin else 0
+                    disabled: not root.is_admin
                     canvas.before:
                         Color:
-                            rgba: (0.7, 0.3, 0.5, .5)
-                        Rectangle:
+                            rgba: (0.6, 0.3, 0.6, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.6, 0.2, 0.4, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [10]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .75
+            Widget:
+                size_hint_y: 0.3
 
-                BoxLayout:
-                    orientation: "vertical"
-
-                Button:
-                    text: "Izlogoties"
-                    font_size: min(root.width, root.height) * 0.05
-                    on_release: root.logout_button()
-                    size_hint_y: .15
-                    background_color: 0.5, 0.3, 0.7, .5
-                    color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: (0.5, 0.3, 0.7, .5)
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
-
+            Button:
+                text: "Izlogoties"
+                font_size: min(root.width, root.height) * 0.025
+                size_hint_y: None
+                height: dp(50)
+                background_color: (0, 0, 0, 0)
+                on_release: root.logout_button()
+                canvas.before:
+                    Color:
+                        rgba: (0.8, 0.3, 0.3, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
 
         BoxLayout:
             orientation: "vertical"
+            spacing: dp(15)
 
             BoxLayout:
-                orientation: "horizontal"
-                size_hint_y: .125
+                size_hint_y: None
+                height: dp(60)
+                spacing: dp(15)
+                padding: [dp(10), dp(10)]
 
                 canvas.before:
                     Color:
-                        rgba: (.1, 0, 0, .15)
-                    Rectangle:
+                        rgba: (0.25, 0.25, 0.35, 0.95)
+                    RoundedRectangle:
                         pos: self.pos
                         size: self.size
-                
+                        radius: [10]
+
                 Label:
-                    text: "Jūsu piezīmes:"
-                    color: 0, 0, 0, 1
-                
+                    text: "Manas piezīmes"
+                    font_size: min(root.width, root.height) * 0.035
+                    color: (1, 1, 1, 1)
+                    bold: True
+                    size_hint_x: 0.6
+                    text_size: self.size
+                    halign: 'left'
+                    valign: 'center'
+                    padding: [dp(20), 0]
+
                 Button:
                     text: "Kārtot pēc datuma"
+                    size_hint_x: 0.2
+                    background_color: (0, 0, 0, 0)
                     on_press: root.sort_notes_by_date()
-                    background_color: 0.5, 0.3, 0.7, 1
-                    color: 1, 1, 1, 1
                     canvas.before:
                         Color:
-                            rgba: (0.5, 0.3, 0.7, 1)
-                        Rectangle:
+                            rgba: (0.3, 0.6, 0.9, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [8]
 
                 Button:
                     text: "Kārtot pēc nosaukuma"
+                    size_hint_x: 0.2
+                    background_color: (0, 0, 0, 0)
                     on_press: root.sort_notes_by_title()
-                    background_color: 0.5, 0.3, 0.7, 1
-                    color: 1, 1, 1, 1
                     canvas.before:
                         Color:
-                            rgba: (0.5, 0.3, 0.7, 1)
-                        Rectangle:
+                            rgba: (0.3, 0.6, 0.9, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [8]
 
             ScrollView:
                 do_scroll_x: False
                 do_scroll_y: True
-                
-                canvas.before:
-                    Color:
-                        rgba: (0.85, 0.95, 1, 1)
-                
+                bar_width: dp(10)
+                bar_color: (0.3, 0.3, 0.4, 1)
+                bar_inactive_color: (0.2, 0.2, 0.3, 1)
+                effect_cls: "ScrollEffect"
+                scroll_type: ['bars']
+
                 GridLayout:
-                    cols: 2
                     id: notes_container
+                    cols: 2
+                    spacing: dp(20)
+                    padding: dp(20)
                     size_hint_y: None
                     height: self.minimum_height
-                    spacing: 15
-                    padding: [20, 10]
 
 <NoteItemView>:
     orientation: 'vertical'
     size_hint_y: None
-    height: self.minimum_height
-    padding: dp(10)
-    spacing: dp(15)
+    height: dp(200)
+    padding: dp(15)
+    spacing: dp(10)
 
     canvas.before:
         Color:
-            rgba: (root.color_red, root.color_green, root.color_blue, .5)
+            rgba: (root.color_red, root.color_green, root.color_blue, 0.95)
         RoundedRectangle:
             pos: self.pos
-            size: root.width, root.height
-            radius: [4]
-    Label:
-        text: f"{root.note_title}"
-        text_size: self.width - dp(20), None
-        color: root.color_red - 0.1, root.color_green - 0.1, root.color_blue - 0.1, 1
-        size_hint_y: None
-        bold: True
-        height: self.texture_size[1]
-
-    Label:
-        text: f"Created: {root.created_at}"
-        text_size: self.width - dp(20), None
-        color: root.color_red, root.color_green, root.color_blue, 1
-        size_hint_y: None
-        height: self.texture_size[1]
-    
-    Label:
-        text: root.note_text
-        color: root.color_red - .1, root.color_green - .1, root.color_blue - .1, 1
-        bold: True
-        text_size: self.width - dp(20), None
-        size_hint_y: None
-        height: self.texture_size[1]
-        halign: 'left'
-        valign: 'middle'
-        padding: [10, 10]
+            size: self.size
+            radius: [15]
 
     BoxLayout:
-        orientation: 'horizontal'
         size_hint_y: None
-        height: dp(30)
+        height: dp(35)
+        spacing: dp(10)
+
+        Label:
+            text: root.note_title
+            font_size: min(root.width, root.height) * 0.1
+            color: (1, 1, 1, 1)
+            bold: True
+            text_size: self.size
+            halign: 'left'
+            valign: 'center'
+            size_hint_x: 0.7
 
         BoxLayout:
-            orientation: 'horizontal'
-            size_hint_x: .3
-
-        BoxLayout:
-            orientation: 'horizontal'
-            spacing: 5
-            size_hint_x: .7
+            size_hint_x: 0.3
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 0.15)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [8]
 
             Label:
-                text: f"{root.note_category}"
-                text_size: self.width - dp(20), None
-                color: root.color_red, root.color_green, root.color_blue, 1
+                text: root.note_category
+                font_size: min(root.width, root.height) * 0.08
+                color: (1, 1, 1, 0.9)
+                bold: True
 
-            Button:
-                text: "Rediģēt"
-                size_hint_y: 1
-                size_hint_x: .45
-                on_release: root.edit_note()
-                background_color: 0.5, 0.3, 0.7, 1
-                color: 1, 1, 1, 1
-                canvas.before:
-                    Color:
-                        rgba: (0.5, 0.3, 0.7, 1)
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                    Color:
-                        rgba: (0.4, 0.2, 0.6, 1)
-                    Line:
-                        rectangle: (self.x, self.y, self.width, self.height)
-                        width: 1.5
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [dp(5), dp(10)]
 
-            Button:
-                text: "Dzēst"
-                size_hint_y: 1
-                size_hint_x: .55
-                on_release: root.delete_note()
-                background_color: 0.5, 0.3, 0.7, 1
-                color: 1, 1, 1, 1
-                canvas.before:
-                    Color:
-                        rgba: (0.5, 0.3, 0.7, 1)
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                    Color:
-                        rgba: (0.4, 0.2, 0.6, 1)
-                    Line:
-                        rectangle: (self.x, self.y, self.width, self.height)
-                        width: 1.5
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            bar_width: dp(4)
+            bar_color: (1, 1, 1, 0.7)
+            bar_inactive_color: (1, 1, 1, 0.3)
+            effect_cls: "ScrollEffect"
+
+            Label:
+                text: root.note_text
+                color: (1, 1, 1, 0.9)
+                text_size: self.width - dp(10), None
+                size_hint_y: None
+                height: self.texture_size[1]
+                halign: 'left'
+                valign: 'top'
+                markup: True
+
+    BoxLayout:
+        size_hint_y: None
+        height: dp(50)
+        spacing: dp(10)
+
+        Label:
+            text: root.created_at
+            color: (1, 1, 1, 0.7)
+            text_size: self.size
+            halign: 'left'
+            valign: 'center'
+            size_hint_x: 0.4
+
+        Widget:
+            size_hint_x: 0.2
+
+        Button:
+            text: 'Edit'
+            size_hint_x: 0.2
+            background_color: 0, 0, 0, 0
+            on_release: root.edit_note()
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [8]
+
+        Button:
+            text: 'Delete'
+            size_hint_x: 0.2
+            background_color: 0, 0, 0, 0
+            on_release: root.delete_note()
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, 0.2)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [8]
 
 <WindowManager>:
     LoginWindow:
@@ -590,145 +622,161 @@
     
     canvas.before:
         Color:
-            rgba: (0.85, 0.95, 1, 1)
+            rgba: (0.95, 0.97, 1, 1) 
         Rectangle:
             pos: self.pos
             size: self.size
 
     BoxLayout:
         orientation: "horizontal"
+        spacing: dp(20)
+        padding: dp(20)
         
         BoxLayout:
             orientation: "vertical"
-            size_hint_x: .28
+            size_hint_x: .25
+            spacing: dp(15)
 
             canvas.before:
                 Color:
-                    rgba: (.1, 0, 0, .15)
-                Rectangle:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
+                    radius: [15]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .25
+            Label:
+                text: "Rediģēt piezīmi"
+                font_size: min(root.width, root.height) * 0.04
+                color: (1, 1, 1, 1)
+                bold: True
+                size_hint_y: None
+                height: dp(60)
+                padding: [dp(20), 0]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .75
-
-                BoxLayout:
-                    orientation: "vertical"
-
-                Button:
-                    text: "Atpakaļ"
-                    font_size: min(root.width, root.height) * 0.05
-                    on_release: root.back_to_main()
-                    size_hint_y: .15
-                    background_color: 0.5, 0.3, 0.7, .5
-                    color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: (0.5, 0.3, 0.7, .5)
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+            Button:
+                text: "Atpakaļ"
+                font_size: min(root.width, root.height) * 0.025
+                size_hint_y: None
+                height: dp(50)
+                background_color: (0, 0, 0, 0)
+                on_release: root.back_to_main()
+                canvas.before:
+                    Color:
+                        rgba: (0.8, 0.3, 0.3, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
 
         BoxLayout:
             orientation: "vertical"
+            spacing: dp(20)
+            padding: [dp(20), dp(10)]
 
-            BoxLayout:
-                orientation: "horizontal"
-                size_hint_y: .125
-
-                canvas.before:
-                    Color:
-                        rgba: (.1, 0, 0, .15)
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                
-                Label:
-                    text: "Jaunā piezīme:"
-                    color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [15]
 
             BoxLayout:
                 orientation: "vertical"
-                padding: [20, 40]
-                spacing: 15
+                spacing: dp(20)
+                padding: [dp(20), dp(20)]
 
-                CustomTextInput:
-                    id: note_title_input
-                    hint_text: "Ievadi piezīmes nosaukumu"
-                    font_size: min(root.width, root.height) * 0.04
-                    
-                CustomTextInput:
-                    id: note_input
-                    multiline: True
-                    hint_text: "Ievadi piezīmes tekstu"
-                    font_size: min(root.width, root.height) * 0.04
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(5)
+                    size_hint_y: None
+                    height: dp(80)
+
+                    Label:
+                        text: "Nosaukums"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    CustomTextInput:
+                        id: note_title_input
+                        hint_text: "Ievadi piezīmes nosaukumu"
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: None
+                        height: dp(45)
+                        multiline: False
+
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(5)
+
+                    Label:
+                        text: "Saturs"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    CustomTextInput:
+                        id: note_input
+                        hint_text: "Ievadi piezīmes tekstu"
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: 1
+                        multiline: True
 
                 BoxLayout:
                     orientation: "horizontal"
-                    spacing: 15
-                    size_hint_y: .25
-                    
+                    size_hint_y: None
+                    height: dp(50)
+                    spacing: dp(15)
+
                     Button:
                         text: f'Izvēlies krāsu : {root.chosen_color}'
+                        background_color: (0, 0, 0, 0)
                         on_release: root.create_color_dropdown(self)
-                        background_color: 0.5, 0.3, 0.7, 1
-                        color: 1, 1, 1, 1
                         canvas.before:
                             Color:
-                                rgba: (0.5, 0.3, 0.7, 1)
-                            Rectangle:
+                                rgba: (0.3, 0.6, 0.9, 1)
+                            RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                            Color:
-                                rgba: (0.4, 0.2, 0.6, 1)
-                            Line:
-                                rectangle: (self.x, self.y, self.width, self.height)
-                                width: 1.5
-                        
+                                radius: [10]
+
                     Button:
                         text: f'Izvēlies kategoriju : {root.chosen_category}'
+                        background_color: (0, 0, 0, 0)
                         on_release: root.create_category_dropdown(self)
-                        background_color: 0.5, 0.3, 0.7, 1
-                        color: 1, 1, 1, 1
                         canvas.before:
                             Color:
-                                rgba: (0.5, 0.3, 0.7, 1)
-                            Rectangle:
+                                rgba: (0.3, 0.6, 0.9, 1)
+                            RoundedRectangle:
                                 pos: self.pos
                                 size: self.size
-                            Color:
-                                rgba: (0.4, 0.2, 0.6, 1)
-                            Line:
-                                rectangle: (self.x, self.y, self.width, self.height)
-                                width: 1.5
+                                radius: [10]
 
                 Button:
-                    text: "Saglabāt"
+                    text: "Saglabāt izmaiņas"
+                    font_size: min(root.width, root.height) * 0.035
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
                     on_release: root.save_note()
-                    size_hint_y: .2
-                    background_color: 0.5, 0.3, 0.7, 1
-                    color: 1, 1, 1, 1
                     canvas.before:
                         Color:
-                            rgba: (0.5, 0.3, 0.7, 1)
-                        Rectangle:
+                            rgba: (0.3, 0.8, 0.5, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [10]
+
 <UserEditWindow>:
     username_input: username_input
     password_input: password_input
@@ -737,252 +785,385 @@
 
     canvas.before:
         Color:
-            rgba: (0.85, 0.95, 1, 1)
+            rgba: (0.95, 0.97, 1, 1)
         Rectangle:
             pos: self.pos
             size: self.size
 
     BoxLayout:
         orientation: "horizontal"
-        
+        spacing: dp(20)
+        padding: dp(20)
+
         BoxLayout:
             orientation: "vertical"
-            size_hint_x: .28
+            size_hint_x: .25
+            spacing: dp(15)
 
             canvas.before:
                 Color:
-                    rgba: (.1, 0, 0, .15)
-                Rectangle:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
+                    radius: [15]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .25
+            Label:
+                text: "Rediģēt profilu"
+                font_size: min(root.width, root.height) * 0.04
+                color: (1, 1, 1, 1)
+                bold: True
+                size_hint_y: None
+                height: dp(60)
+                padding: [dp(20), 0]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .75
-
-                BoxLayout:
-                    orientation: "vertical"
-
-                Button:
-                    text: "Atpakaļ"
-                    font_size: min(root.width, root.height) * 0.05
-                    on_release: root.back_to_main()
-                    size_hint_y: .15
-                    background_color: 0.5, 0.3, 0.7, .5
-                    color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: (0.5, 0.3, 0.7, .5)
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+            Button:
+                text: "Atpakaļ"
+                font_size: min(root.width, root.height) * 0.025
+                size_hint_y: None
+                height: dp(50)
+                background_color: (0, 0, 0, 0)
+                on_release: root.back_to_main()
+                canvas.before:
+                    Color:
+                        rgba: (0.8, 0.3, 0.3, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
 
         BoxLayout:
             orientation: "vertical"
+            spacing: dp(20)
+            padding: [dp(20), dp(10)]
 
-            BoxLayout:
-                orientation: "horizontal"
-                size_hint_y: .125
-
-                canvas.before:
-                    Color:
-                        rgba: (.1, 0, 0, .15)
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                
-                Label:
-                    text: "Rediģēt lietotāja informāciju:"
-                    color: 0, 0, 0, 1
+            canvas.before:
+                Color:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [15]
 
             BoxLayout:
                 orientation: "vertical"
-                padding: [20, 40]
-                spacing: 15
+                spacing: dp(20)
+                padding: [dp(20), dp(20)]
 
-                CustomTextInput:
-                    id: username_input
-                    hint_text: "Ievadi lietotājvārdu"
-                    font_size: min(root.width, root.height) * 0.04
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(5)
+                    size_hint_y: None
+                    height: dp(80)
 
-                CustomTextInput:
-                    id: password_input
-                    hint_text: "Ievadi paroli"
-                    font_size: min(root.width, root.height) * 0.04
-                    password: True
+                    Label:
+                        text: "Username"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
 
-                CustomTextInput:
-                    id: name_input
-                    hint_text: "Ievadi vārdu"
-                    font_size: min(root.width, root.height) * 0.04
+                    CustomTextInput:
+                        id: username_input
+                        multiline: False
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: None
+                        height: dp(45)
 
-                CustomTextInput:
-                    id: surname_input
-                    hint_text: "Ievadi uzvārdu"
-                    font_size: min(root.width, root.height) * 0.04
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(5)
+                    size_hint_y: None
+                    height: dp(80)
+
+                    Label:
+                        text: "Password"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    CustomTextInput:
+                        id: password_input
+                        multiline: False
+                        password: True
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: None
+                        height: dp(45)
+
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(5)
+                    size_hint_y: None
+                    height: dp(80)
+
+                    Label:
+                        text: "Name"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    CustomTextInput:
+                        id: name_input
+                        multiline: False
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: None
+                        height: dp(45)
+
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(5)
+                    size_hint_y: None
+                    height: dp(80)
+
+                    Label:
+                        text: "Surname"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    CustomTextInput:
+                        id: surname_input
+                        multiline: False
+                        font_size: min(root.width, root.height) * 0.035
+                        size_hint_y: None
+                        height: dp(45)
 
                 Button:
-                    text: "Saglabāt"
-                    on_release: root.save_user_data()
-                    size_hint_y: .2
-                    background_color: 0.5, 0.3, 0.7, 1
-                    color: 1, 1, 1, 1
+                    text: "Saglabāt izmaiņas"
+                    font_size: min(root.width, root.height) * 0.035
+                    size_hint_y: None
+                    height: dp(50)
+                    background_color: (0, 0, 0, 0)
+                    on_release: root.save_changes()
                     canvas.before:
                         Color:
-                            rgba: (0.5, 0.3, 0.7, 1)
-                        Rectangle:
+                            rgba: (0.3, 0.8, 0.5, 1)
+                        RoundedRectangle:
                             pos: self.pos
                             size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
+                            radius: [10]
+
 <SettingsWindow>:
     canvas.before:
         Color:
-            rgba: (0.85, 0.95, 1, 1)
+            rgba: (0.95, 0.97, 1, 1)
         Rectangle:
             pos: self.pos
             size: self.size
 
     BoxLayout:
-        orientation: 'vertical'
+        orientation: "horizontal"
+        spacing: dp(20)
         padding: dp(20)
+        
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: .25
+            spacing: dp(15)
 
-        Label:
-            text: "Iestatījumi"
-            font_size: 24
-            size_hint_y: None
-            height: dp(40)
-
-        Button:
-            text: "Izvēlēties fona krāsu"
-            on_release: root.dropdown.open(self)
-            background_color: 0.5, 0.3, 0.7, 1
-            color: 1, 1, 1, 1
             canvas.before:
                 Color:
-                    rgba: (0.5, 0.3, 0.7, 1)
-                Rectangle:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                Color:
-                    rgba: (0.4, 0.2, 0.6, 1)
-                Line:
-                    rectangle: (self.x, self.y, self.width, self.height)
-                    width: 1.5
+                    radius: [15]
 
-        Button:
-            text: "Atpakaļ"
-            on_release: root.go_back()
-            background_color: 0.5, 0.3, 0.7, 1
-            color: 1, 1, 1, 1
+            Label:
+                text: "Iestatījumi"
+                font_size: min(root.width, root.height) * 0.04
+                color: (1, 1, 1, 1)
+                bold: True
+                size_hint_y: None
+                height: dp(60)
+                padding: [dp(20), 0]
+
+            Button:
+                text: "Atpakaļ"
+                font_size: min(root.width, root.height) * 0.025
+                size_hint_y: None
+                height: dp(50)
+                background_color: (0, 0, 0, 0)
+                on_release: root.back_to_main()
+                canvas.before:
+                    Color:
+                        rgba: (0.8, 0.3, 0.3, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: dp(20)
+            padding: [dp(20), dp(10)]
+
             canvas.before:
                 Color:
-                    rgba: (0.5, 0.3, 0.7, 1)
-                Rectangle:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                Color:
-                    rgba: (0.4, 0.2, 0.6, 1)
-                Line:
-                    rectangle: (self.x, self.y, self.width, self.height)
-                    width: 1.5
+                    radius: [15]
+
+            BoxLayout:
+                orientation: "vertical"
+                spacing: dp(20)
+                padding: [dp(20), dp(20)]
+
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(10)
+                    size_hint_y: None
+                    height: dp(120)
+
+                    Label:
+                        text: "Fona krāsa"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    Button:
+                        text: f"Pašreizējā krāsa: {root.current_color}"
+                        font_size: min(root.width, root.height) * 0.03
+                        size_hint_y: None
+                        height: dp(50)
+                        background_color: (0, 0, 0, 0)
+                        on_release: root.dropdown.open(self)
+                        canvas.before:
+                            Color:
+                                rgba: (0.3, 0.6, 0.9, 1)
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
+
+                BoxLayout:
+                    orientation: "vertical"
+                    spacing: dp(10)
+                    size_hint_y: None
+                    height: dp(150)
+
+                    Label:
+                        text: "Priekšskatījums"
+                        font_size: min(root.width, root.height) * 0.035
+                        color: (1, 1, 1, 1)
+                        bold: True
+                        halign: 'left'
+                        size_hint_y: None
+                        height: dp(30)
+                        text_size: self.size
+
+                    BoxLayout:
+                        canvas.before:
+                            Color:
+                                rgba: root.preview_color
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [10]
 
 <UserView>:
     canvas.before:
         Color:
-            rgba: 1, 0.93, 0.93, 1
+            rgba: (0.95, 0.97, 1, 1)
         Rectangle:
             pos: self.pos
             size: self.size
 
     BoxLayout:
         orientation: "horizontal"
-        
+        spacing: dp(20)
+        padding: dp(20)
+
         BoxLayout:
             orientation: "vertical"
-            size_hint_x: .28
+            size_hint_x: .25
+            spacing: dp(15)
 
             canvas.before:
                 Color:
-                    rgba: (.1, 0, 0, .15)
-                Rectangle:
+                    rgba: (0.25, 0.25, 0.35, 0.95)
+                RoundedRectangle:
                     pos: self.pos
                     size: self.size
+                    radius: [15]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .25
+            Label:
+                text: "Lietotāju pārvaldība"
+                font_size: min(root.width, root.height) * 0.04
+                color: (1, 1, 1, 1)
+                bold: True
+                size_hint_y: None
+                height: dp(60)
+                padding: [dp(20), 0]
 
-            BoxLayout:
-                orientation: "vertical"
-                size_hint_y: .75
+            Button:
+                text: "Pievienot lietotāju"
+                font_size: min(root.width, root.height) * 0.025
+                size_hint_y: None
+                height: dp(50)
+                background_color: (0, 0, 0, 0)
+                on_release: root.add_user()
+                canvas.before:
+                    Color:
+                        rgba: (0.3, 0.8, 0.5, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
 
-                BoxLayout:
-                    orientation: "vertical"
-
-                Button:
-                    text: "Atpakaļ"
-                    font_size: min(root.width, root.height) * 0.05
-                    on_release: root.back_to_main()
-                    size_hint_y: .15
-                    background_color: 0.5, 0.3, 0.7, .5
-                    color: 1, 1, 1, 1
-                    canvas.before:
-                        Color:
-                            rgba: (0.5, 0.3, 0.7, .5)
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                        Color:
-                            rgba: (0.4, 0.2, 0.6, 1)
-                        Line:
-                            rectangle: (self.x, self.y, self.width, self.height)
-                            width: 1.5
-
+            Button:
+                text: "Atpakaļ"
+                font_size: min(root.width, root.height) * 0.025
+                size_hint_y: None
+                height: dp(50)
+                background_color: (0, 0, 0, 0)
+                on_release: root.back_to_main()
+                canvas.before:
+                    Color:
+                        rgba: (0.8, 0.3, 0.3, 1)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10]
 
         BoxLayout:
             orientation: "vertical"
+            spacing: dp(15)
 
-            BoxLayout:
-                orientation: "horizontal"
-                size_hint_y: .125
-
-                canvas.before:
-                    Color:
-                        rgba: (.1, 0, 0, .15)
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                
-                Label:
-                    text: "Lietotāji:"
-                    color: 0, 0, 0, 1
-                
-                
             ScrollView:
                 do_scroll_x: False
                 do_scroll_y: True
-                
-                canvas.before:
-                    Color:
-                        rgba: (0.85, 0.95, 1, 1)
-                
+                bar_width: dp(10)
+                bar_color: (0.3, 0.3, 0.4, 1)
+                bar_inactive_color: (0.2, 0.2, 0.3, 1)
+                effect_cls: "ScrollEffect"
+                scroll_type: ['bars']
+
                 GridLayout:
-                    cols: 2
                     id: users_container
+                    cols: 1
+                    spacing: dp(15)
+                    padding: dp(20)
                     size_hint_y: None
                     height: self.minimum_height
-                    spacing: 15
-                    padding: [20, 10]

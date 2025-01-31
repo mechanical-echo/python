@@ -1,5 +1,5 @@
 from kivy.uix.screenmanager import Screen
-from kivy.properties import ListProperty, StringProperty, ColorProperty
+from kivy.properties import ListProperty, StringProperty, ColorProperty, BooleanProperty
 import os
 import csv
 from kivy.uix.label import Label
@@ -13,6 +13,7 @@ class NotesView(Screen):
     colors_data = ListProperty([])
     current_user = StringProperty("")
     background_color = ColorProperty([1, 0.93, 0.93, 1])
+    is_admin = BooleanProperty(False)
     
     sort_order_date = True
     sort_order_title = True
@@ -119,3 +120,14 @@ class NotesView(Screen):
         self.sort_order_title = not self.sort_order_title
         self.notes_data.sort(key=lambda x: x['note_id'], reverse=not self.sort_order_title)
         self.update_notes_view()
+
+    def check_admin_role(self, username):
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        users_csv_path = os.path.join(project_root, 'csv', 'users.csv')
+        
+        with open(users_csv_path, 'r', encoding='utf-8') as file:
+            reader = csv.DictReader(file, delimiter='\t')
+            for row in reader:
+                if row['username'] == username:
+                    self.is_admin = row['role'] == 'admin'
+                    break
