@@ -33,7 +33,7 @@ class NotesView(Screen):
 
     def logout_button(self):
         self.current_user = ""
-        self.welcome_text = "Welcome!"
+        self.welcome_text = "Sveicināti!"
         self.manager.current = 'login'
 
     def create_note(self):

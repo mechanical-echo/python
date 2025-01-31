@@ -51,7 +51,7 @@ class NoteEditWindow(Screen):
                     updated_rows.append(row)
 
             with open(notes_csv_path, 'w', newline='', encoding='utf-8') as csvfile:
-                fieldnames = ['user_id', 'note_id', 'filename', 'category', 'color', 'created_at']
+                fieldnames = ['lietotājs', 'piezīmes_id', 'faila_nosaukums', 'kategorija', 'krāsa', 'izveidots']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames, delimiter='\t')
                 writer.writeheader()
                 writer.writerows(updated_rows)
