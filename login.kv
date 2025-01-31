@@ -5,7 +5,7 @@
 
     canvas.before:
         Color:
-            rgba: (0.95, 0.95, 0.95, 1)  # Light gray background
+            rgba: (0.95, 0.95, 0.95, 1)
         Rectangle:
             pos: self.pos
             size: self.size
@@ -16,7 +16,6 @@
         spacing: dp(20)
         size: root.width, root.height
 
-        # Welcome Section
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: 0.3
@@ -25,7 +24,7 @@
             Label:
                 text: "Welcome!"
                 font_size: min(root.width, root.height) * 0.1
-                color: (0.2, 0.4, 0.6, 1)  # Soft blue
+                color: (0.2, 0.4, 0.6, 1)
                 bold: True
                 halign: 'center'
                 valign: 'middle'
@@ -39,16 +38,15 @@
                 allow_stretch: True
                 keep_ratio: True
 
-        # Username Input
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: 0.2
+            size_hint_y: 0.3
             spacing: dp(5)
 
             Label:
                 text: "Username:"
                 font_size: min(root.width, root.height) * 0.05
-                color: (0.2, 0.2, 0.2, 1)  # Dark gray
+                color: (0.2, 0.2, 0.2, 1)
                 bold: True
                 halign: 'left'
                 text_size: self.size
@@ -59,20 +57,19 @@
                 size_hint_y: 0.6
                 hint_text: "Enter your username"
                 font_size: min(root.width, root.height) * 0.04
-                background_color: (1, 1, 1, 1)  # White background
-                foreground_color: (0.2, 0.2, 0.2, 1)  # Dark gray text
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.2, 0.2, 0.2, 1)
                 padding: [10, 10]
 
-        # Password Input
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: 0.2
+            size_hint_y: 0.3
             spacing: dp(5)
 
             Label:
                 text: "Password:"
                 font_size: min(root.width, root.height) * 0.05
-                color: (0.2, 0.2, 0.2, 1)  # Dark gray
+                color: (0.2, 0.2, 0.2, 1)
                 bold: True
                 halign: 'left'
                 text_size: self.size
@@ -84,18 +81,17 @@
                 size_hint_y: 0.6
                 hint_text: "Enter your password"
                 font_size: min(root.width, root.height) * 0.04
-                background_color: (1, 1, 1, 1)  # White background
-                foreground_color: (0.2, 0.2, 0.2, 1)  # Dark gray text
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.2, 0.2, 0.2, 1)
                 padding: [10, 10]
 
-        # Login Button
         Button:
             text: "Login"
             size_hint_y: 0.15
             font_size: min(root.width, root.height) * 0.06
             bold: True
-            color: (1, 1, 1, 1)  # White text
-            background_color: (0.2, 0.4, 0.6, 1)  # Soft blue
+            color: (1, 1, 1, 1)
+            background_color: (0.2, 0.4, 0.6, 1)
             on_press: root.login_button()
             canvas.before:
                 Color:
@@ -105,12 +101,11 @@
                     size: self.size
                     radius: [dp(10),]
 
-        # Status Message
         Label:
             text: root.status_message
             size_hint_y: 0.1
             font_size: min(root.width, root.height) * 0.04
-            color: (0.8, 0.2, 0.2, 1)  # Red for error messages
+            color: (0.8, 0.2, 0.2, 1)
             bold: True
             halign: 'center'
             valign: 'middle'
