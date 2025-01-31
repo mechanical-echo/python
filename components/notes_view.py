@@ -22,6 +22,9 @@ class NotesView(Screen):
         self.notes_label = Label(text="", size_hint_y=None, height=100)
         self.add_widget(self.notes_label)
 
+    def open_user_management(self):
+        self.manager.current = 'user_view'
+
     def edit_profile(self):
         self.manager.current = 'user_edit'
         edit_screen = self.manager.get_screen('user_edit')

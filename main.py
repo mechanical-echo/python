@@ -6,6 +6,7 @@ from components.note_creation_window import NoteCreationWindow
 from components.note_item_view import NoteItemView
 from components.notes_view import NotesView
 from components.note_edit_window import NoteEditWindow
+from components.user_view import UserView
 from kivy.utils import platform
 from kivy.core.window import Window
 from kivy.config import Config
