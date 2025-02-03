@@ -1,6 +1,2 @@
 user_id	note_id	filename	category	color	created_at
-user1	User1 note	c5705611-0994-4636-aaf3-e0c552ccdf73.txt	mācības	rozā	2025-01-31 01:22:01
-admin	wwww	db48b3ee-70b6-42b6-8661-02f78d4497f2.txt	mācības	violets	2025-01-31 01:30:56
-admin	ooooooo	72dc2297-73da-4dc0-8cfc-c2a72fd89de0.txt	personīgais	rozā	2025-01-31 01:31:09
-admin	"Hello world	"	8859e9c3-eb35-45e1-ab4d-98ca11001138.txt	personīgais	violets	2025-01-31 13:17:49
-user2	Wow!	8595b6d1-5f56-4cd5-afbc-89c10a7898e9.txt	personīgais	violets	2025-01-31 13:41:23
+admin	Hello	a36c0c01-1316-4e67-bd38-dd746b947b37.txt	mācības	violets	2025-02-03 16:39:14

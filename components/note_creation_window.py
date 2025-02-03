@@ -86,7 +86,7 @@ class NoteCreationWindow(Screen):
             with open(notes_csv_path, 'a', newline='', encoding='utf-8') as csvfile:
                 csvwriter = csv.writer(csvfile, delimiter='\t')
                 if not file_exists:
-                    csvwriter.writerow(['lietotājs', 'piezīmes_id', 'faila_nosaukums', 'kategorija', 'krāsa', 'izveidots'])
+                    csvwriter.writerow(['user_id', 'note_id', 'filename', 'category', 'color', 'created_at'])
                 
                 csvwriter.writerow([
                     self.current_user,

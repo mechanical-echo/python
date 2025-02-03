@@ -28,7 +28,7 @@ class UserEditWindow(Screen):
                     self.surname_input.text = row['surname']
                     break
 
-    def save_user_data(self):
+    def save_changes(self):
         old_username = self.current_user
         new_username = self.username_input.text
         password = self.password_input.text

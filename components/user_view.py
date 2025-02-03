@@ -57,7 +57,7 @@ class UserListItem(BoxLayout):
                 rows.append(row)
         
         with open(users_csv_path, 'w', encoding='utf-8', newline='') as file:
-            fieldnames = ['lietotājvārds', 'parole', 'vārds', 'uzvārds', 'loma']
+            fieldnames = ['username', 'password', 'name', 'surname', 'role']
             writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter='\t')
             writer.writeheader()
             writer.writerows(rows)
